@@ -1,11 +1,18 @@
 import React from 'react';
-import {Title, Info} from './styles'
+import {Button, Title, Info} from './styles'
 
 const PokeInfo: React.FC = () => {
 
     return (
         <>
+
+            <a href="/">
+                <Button>Voltar</Button>
+
+            </a>
             <Title>Informações</Title>
+
+
 
             <Info>
                 <div>

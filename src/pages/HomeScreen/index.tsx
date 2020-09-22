@@ -1,5 +1,5 @@
 import React from 'react';
-import {IMG, Form, PokeList} from './styles';
+import {IMG, PokeList} from './styles';
 import background from '../../assets/images/logo.png';
 
 
@@ -8,11 +8,6 @@ const HomeScreen: React.FC = () =>{
     return (
         <>
             <IMG src={background} alt="Background" />
-
-            <Form>
-                <input placeholder= "Digite o nome do Pokémon" />
-                <button type="submit">Pesquisar na Pokedex</button>
-            </Form>
             <PokeList>
             <ul >
             <a href="/pokedexBulbasaur?nome=bulbasaur">
@@ -22,14 +17,14 @@ const HomeScreen: React.FC = () =>{
                     <p >Tipo: grama e veneno</p>
                 </li>
                 </a>
-                <a href="/pokedexVenusaur?nome=ivysaur">
+                <a href="/pokedexIvysaur?nome=ivysaur">
                 <li>
                     <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"/>
                     <h2>2. Ivysaur</h2>
                     <p >Tipo: grama e veneno</p>
                 </li>
                 </a>
-                <a href="/pokedexIvysaur?nome=Venusaur">
+                <a href="/pokedexVenusaur?nome=Venusaur">
                 <li>
                     <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"/>
                     <h2>3. Venusaur</h2>

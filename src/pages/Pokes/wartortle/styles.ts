@@ -15,6 +15,17 @@ export const Title = styled.h1`
 
 `;
 
+export const Button = styled.button`
+    width: 100px;
+    height: 50px;
+    background: #04d361;
+    border-radius: 0 5px 5px 0;
+    border: 0;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.2s;
+`;
+
 export const Upper = styled.div`
     flex: 1;
     background-color: #559EDF;
