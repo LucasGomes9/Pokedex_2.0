@@ -55,13 +55,43 @@ export const Form = styled.form`
     }
 `;
 
-export const PokeList = styled.div`
+export const Listas2 = styled.div`
 
-    ul{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 20px;
-        padding-inline-start: 0;
+    margin-top: 80px;
+    max-width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    a{
+        text-decoration: none;
+        margin-left: 50px;
+        margin-top: 10px;
+
+        img{
+            max-width: 300%;
+            width: 100px;
+            border-radius: 10px 10px 10px 10px;
+
+        }
+        strong{
+            color: #000000;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+`;
+
+export const Listas = styled.div`
+
+    margin-top: 80px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
         a{
             text-decoration: none;
             margin-left: 50px;
@@ -70,9 +100,57 @@ export const PokeList = styled.div`
             li{
                 list-style: none;
                 padding: 40px;
+                border-radius: 50px;
                 background-color: #f4f4f4;
                 color: #222;
                 text-align: center;
+                img{
+                width: 200px;
+                }
+                h2{
+                    text-transform: capitalize;
+                    margin-bottom: 0px;
+                    font-size: 32px;
+                    font-weight: normal;
+                }
+                p{
+                    margin-top: 5px;
+                    color: #666;
+                    font-weight: lighter;
+
+                }
+
+        }
+    }
+`;
+
+export const PokeList = styled.div`
+    margin-top: 80px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    ul{
+        display:flex;
+        flex-wrap:wrap;
+        width:100%;
+
+
+            li{
+
+                margin: 20px;
+                list-style: none;
+                padding: 40px;
+                border-radius: 50px;
+                background-color: #f4f4f4;
+                color: #222;
+                text-align: center;
+                a{
+                    text-decoration: none;
+                    margin-left: 50px;
+                    margin-top: 20px;
+
                 img{
                 width: 200px;
                 }

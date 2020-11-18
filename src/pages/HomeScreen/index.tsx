@@ -1,81 +1,97 @@
-import React from 'react';
-import {IMG, PokeList} from './styles';
+import React, {useState, useEffect} from 'react';
+import {IMG, PokeList, Listas, Listas2} from './styles';
 import background from '../../assets/images/logo.png';
+import Poke from '../../model/Poke'
+import api from '../../service/api'
+import { Link } from 'react-router-dom';
 
 
+import PokeAPI from "pokeapi-typescript";
+
+
+interface PokeAPI2 {
+    name:                string;
+    url: string;
+
+}
 
 const HomeScreen: React.FC = () =>{
+
+
+    //const [pokes, setPokesList] = useState<PokeAPI2[]>([]);
+    const [listPokes, setListPokes] = useState<Poke[]>([])
+    const [poke, setPoke] = useState<PokeAPI>();
+
+    useEffect(() => {
+        //PokeAPI.Pokemon.list(151, 0).then(result => setPokesList(result.results));
+        //PokeAPI.Pokemon.fetch("pikachu").then(result => setPoke(result)); */
+        let pokeArr: Poke[] = []
+
+        for (let i = 1; i <= 151; i++) {
+            const url = `pokemon/${i}`;
+            api.get<Poke>(url).then((response: { data: any; }) => {
+
+               // setListPokes([...listPokes, response.data]);
+               setListPokes([...listPokes, response.data]);
+
+                pokeArr.push(response.data);
+              //  console.log(response.data);
+
+            }).catch((error: string) => {
+
+                console.log("error getAllpokes: " + error)
+
+
+            });
+
+        }
+        console.log(pokeArr);
+        setListPokes(pokeArr);
+
+      }, []);
+
+
     return (
         <>
             <IMG src={background} alt="Background" />
-            <PokeList>
-            <ul >
-            <a href="/pokedexBulbasaur?nome=bulbasaur">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"/>
-                    <h2>1. Bulbasaur</h2>
-                    <p >Tipo: grama e veneno</p>
-                </li>
-                </a>
-                <a href="/pokedexIvysaur?nome=ivysaur">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"/>
-                    <h2>2. Ivysaur</h2>
-                    <p >Tipo: grama e veneno</p>
-                </li>
-                </a>
-                <a href="/pokedexVenusaur?nome=Venusaur">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"/>
-                    <h2>3. Venusaur</h2>
-                    <p >Tipo: grama e veneno</p>
-                </li>
-                </a>
-                <a href="/pokedexCharmander?nome=charmander">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"/>
-                    <h2>4. Charmander</h2>
-                    <p >Tipo: fogo</p>
-                </li>
-                </a>
-                <a href="/pokedexCharmeleon?nome=charmeleon">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"/>
-                    <h2>5. Charmeleon</h2>
-                    <p >Tipo: fogo</p>
-                </li>
-                </a>
-                <a href="/pokedexCharizard?nome=charizard">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"/>
-                    <h2>6. Charizard</h2>
-                    <p >Tipo: fogo e voador</p>
-                </li>
-                </a>
-                <a href="/pokedexSquirtle?nome=squirtle">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"/>
-                    <h2>7. Squirtle</h2>
-                    <p >Tipo: agua</p>
-                </li>
-                </a>
-                <a href="/pokedexWartortle?nome=wartortle">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png"/>
-                    <h2>8. Wartortle</h2>
-                    <p >Tipo: agua</p>
-                </li>
-                </a>
-                <a href="/pokedexBlastoise?nome=blastoise">
-                <li>
-                    <img alt=' ' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"/>
-                    <h2>9. Blastoise</h2>
-                    <p >Tipo: agua</p>
-                </li>
-                </a>
-            </ul>
+
+        {     <PokeList>
+                <ul>
+
+                {
+                    listPokes.map(poke =>
+
+                        <>
+                    <li key={poke.id}>
+
+                        <Link  to={`/${poke.name}`}>
+                        <img alt=' ' src={`${poke.sprites.other?.["official-artwork"].front_default}`}/>
+                        <h2>{poke.id + ". " + poke.name}</h2>
+                        <p >Tipo: {poke.types.map((poke: any) => poke.type.name).join(", ")}</p>
+                        </Link>
+
+                    </li>
+
+                    <li key={poke.id}>
+
+                        <Link  to={`/${poke.name}`}>
+                        <img alt=' ' src={`${poke.sprites.other?.["official-artwork"].front_default}`}/>
+                        <h2>{poke.id + ". " + poke.name}</h2>
+                        <p >Tipo: {poke.types.map((poke: any) => poke.type.name).join(", ")}</p>
+                        </Link>
+
+                    </li>
+                    </>
+
+
+                )
+                }
+
+                </ul>
+
 
             </PokeList>
+ }
         </>
 
     )
