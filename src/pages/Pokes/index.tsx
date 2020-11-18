@@ -102,7 +102,7 @@ interface MatchParams {
 
             </a>
             <Title>Informações</Title>
-            <Info style={{background: `linear-gradient(180deg, ${poke?.types.length ?? 0 > 0 ?   getColor(undefined) :  getColor(poke?.types[1].type.name)} 45%, ${getColor(poke?.types[0].type.name)} 55%)`}}>
+            <Info style={{background: `linear-gradient(180deg, ${poke?.types[1] !== undefined  ?   getColor(poke?.types[1].type.name) :  getColor(poke?.types[0].type.name)} 45%, ${getColor(poke?.types[0].type.name)} 55%)`}}>
                 <div >
                 <img alt=' ' src={`${poke?.sprites.other?.["official-artwork"].front_default}`}/>
                 <h1>{poke?.name}</h1>

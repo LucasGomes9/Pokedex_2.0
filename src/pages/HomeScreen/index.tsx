@@ -20,6 +20,7 @@ const HomeScreen: React.FC = () =>{
 
     //const [pokes, setPokesList] = useState<PokeAPI2[]>([]);
     const [listPokes, setListPokes] = useState<Poke[]>([])
+    const [listPokesSort, setListPokesSort] = useState<Poke[]>([])
     const [poke, setPoke] = useState<PokeAPI>();
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const HomeScreen: React.FC = () =>{
                // setListPokes([...listPokes, response.data]);
                setListPokes([...listPokes, response.data]);
 
-                pokeArr.push(response.data);
+                //pokeArr.push(response.data);
               //  console.log(response.data);
 
             }).catch((error: string) => {
@@ -45,21 +46,24 @@ const HomeScreen: React.FC = () =>{
             });
 
         }
-        console.log(pokeArr);
-        setListPokes(pokeArr);
+
+        console.log(listPokesSort);
+      //  setListPokes(pokeArr);
 
       }, []);
+
+
 
 
     return (
         <>
             <IMG src={background} alt="Background" />
-
         {     <PokeList>
                 <ul>
 
                 {
-                    listPokes.map(poke =>
+
+                    listPokes.map((poke =>
 
                         <>
                     <li key={poke.id}>
@@ -81,10 +85,12 @@ const HomeScreen: React.FC = () =>{
                         </Link>
 
                     </li>
+
+
                     </>
 
 
-                )
+                ))
                 }
 
                 </ul>
